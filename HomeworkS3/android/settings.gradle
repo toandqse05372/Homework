@@ -1,0 +1,3 @@
+rootProject.name = 'HomeworkS3'
+
+include ':app'
