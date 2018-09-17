@@ -35,8 +35,7 @@ class App extends Component {
 
   render() {
     return (
-      <Navigation/>
-      
+      <Navigation/>     
     )
   }
 }
