@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
-    Text, FlatList,
-    View, Button, ActivityIndicator
+    Text, FlatList, ImageBackground,StyleSheet,
+    View, Button, ActivityIndicator,Dimensions
 } from 'react-native';
 import Item from '../components/Item';
 
@@ -32,18 +32,30 @@ class ListScreen extends Component {
     render() {
         return (
             <View>
-                {this.state.loading
-                    ? <ActivityIndicator></ActivityIndicator>
-                    : <FlatList
-                        data={this.state.data}
-                        renderItem={this.renderItem}
-                        numColumns={2}
-                        keyExtractor={(item) => item.id.toString()}
-                    />
-                }
+                <ImageBackground
+                    style={styles.img}
+                    resizeMode='cover'
+                    source={{ uri: `https://png.pngtree.com/thumb_back/fw800/back_pic/04/31/71/925842b6a8df118.jpg` }}
+                    blurRadius={5}
+                >
+                    {this.state.loading
+                        ? <ActivityIndicator></ActivityIndicator>
+                        : <FlatList
+                            data={this.state.data}
+                            renderItem={this.renderItem}
+                            numColumns={3}
+                            keyExtractor={(item) => item.id.toString()}
+                        />
+                    }
+                </ImageBackground>
+
             </View>
         );
     }
 }
-
+const styles = StyleSheet.create({
+    img: {
+        width: Dimensions.get('window').width,
+    },
+})
 export default ListScreen;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {  Text,  View,} from 'react-native';
+import {  Text,  Image, TouchableOpacity} from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux'
 import {createStore} from 'redux'
@@ -12,7 +12,14 @@ const Navigation = createStackNavigator({
     screen: ListScreen,
     navigationOptions: ({ navigation }) => {
       return {
-        title: '7 days of movie',
+        title: 'What we have this week',
+        headerStyle: {
+          backgroundColor: '#262626',
+        },
+        headerTitleStyle: {
+          color:'#f5f5f5',
+          alignSelf: 'center'
+        },
       }
     }
   },
@@ -21,6 +28,20 @@ const Navigation = createStackNavigator({
     navigationOptions: ({ navigation }) => {
       return {
         title: navigation.getParam('movie').title,
+        headerLeft:
+        <TouchableOpacity
+          onPress={() => navigation.navigate('List')}>
+          <Image
+            style={{ width: 30, height: 30, marginEnd: 10 ,marginLeft: 10}}
+            source={{ uri: 'https://www.materialui.co/materialIcons/navigation/arrow_back_white_192x192.png' }} />
+        </TouchableOpacity>,
+        headerStyle: {
+          backgroundColor: '#262626',
+        },
+        headerTitleStyle: {
+          color:'#f5f5f5',
+          alignSelf: 'center'
+        },
       };
     }
   }

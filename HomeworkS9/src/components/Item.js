@@ -12,7 +12,7 @@ class Item extends Component {
     listmovie = () => {
         this.props.listmovie({
             seen: this.props.movie.title,
-            image: this.props.movie.poster_path
+            image: this.props.movie.poster_path,
         })
     }
     render() {
@@ -30,11 +30,6 @@ class Item extends Component {
                     source={{ uri: `https://image.tmdb.org/t/p/w500/${this.props.movie.poster_path}` }}
                     resizeMode={'stretch'}
                 />
-                <View style={styles.preview}>
-                    <Text style={styles.txtName}
-                        numberOfLines={2}>{this.props.movie.original_title}</Text>
-                    <Text style={styles.txtDate}>{this.props.movie.release_date}</Text>
-                </View>
 
             </TouchableOpacity>
         );
@@ -45,11 +40,13 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
         height: 270,
-        width: Dimensions.get('window').width/2,
-        padding: 10
+        width: Dimensions.get('window').width * 0.33,
+        height: Dimensions.get('window').width * 0.48,
+        padding: 6
     },
     image: {
-        height: 200
+        width: Dimensions.get('window').width * 0.3,
+        height: Dimensions.get('window').width * 0.45,
     },
     preview: {
         marginLeft: 15
