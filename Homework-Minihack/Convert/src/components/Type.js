@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import {
-    Text, Dimensions, FlatList,
-    View, StyleSheet,
-    TouchableOpacity
+    FlatList,
+    View,
 } from 'react-native';
-import TouchUnit from './TouchUnit';
+import TouchItem from './TouchItem';
 
 import { data } from '../data.json'
 
@@ -12,7 +11,7 @@ class Type extends Component {
     state = {}
 
     renderItem = ({ item }) => {
-        return <TouchUnit item={item} column={this.props.column} />
+        return <TouchItem item={item} column={this.props.column} />
     }
 
     render() {

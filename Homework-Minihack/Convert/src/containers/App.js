@@ -10,7 +10,7 @@ import { createStore } from 'redux'
 import rootReducer from '../reducers'
 
 import ConvertScreen from './ConvertScreen';
-import TypeScreen from './TypeScreen';
+import ChangeTypeScreen from './ChangeTypeScreen';
 
 const Navigation = createStackNavigator({
   Convert: {
@@ -20,8 +20,6 @@ const Navigation = createStackNavigator({
         title: 'Convertable',
         headerTitleStyle: {
           color: '#ff8000',
-          fontSize: 22,
-          fontWeight: '800',
         },
         headerRight: (
           <TouchableOpacity
@@ -43,14 +41,12 @@ const Navigation = createStackNavigator({
   },
 
   TypeDetail: {
-    screen: TypeScreen,
+    screen: ChangeTypeScreen,
     navigationOptions: ({ navigation }) => {
       return {
         title: 'Type',
         headerTitleStyle: {
           color: '#ff8000',
-          fontSize: 22,
-          fontWeight: '800',
         },
       }
     }

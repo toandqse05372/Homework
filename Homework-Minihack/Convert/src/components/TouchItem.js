@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-    Text, Dimensions, FlatList,
+    Text, Dimensions,
     View, StyleSheet,
     TouchableOpacity
 } from 'react-native';
@@ -27,7 +27,8 @@ class TouchUnit extends Component {
                     onPress={this._choiceUnit}>
                     <Text style={[
                         styles.text,
-                        { color: this.props.choice[this.props.column].listValue[this.props.item.id].value ? 'red' : 'white' }
+                        { color: this.props.choice[this.props.column].
+                            listValue[this.props.item.id].value ? 'red' : 'white' }
                     ]}>
                         {this.props.item.text}
                     </Text>
