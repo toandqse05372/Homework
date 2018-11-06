@@ -1,26 +1,53 @@
 import React, { Component } from 'react';
 import {
-    Text, StyleSheet,
-    View, TouchableOpacity
+    Text,
+    View,
+    StyleSheet,
+    TouchableOpacity
 } from 'react-native';
+import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { primaryColorGreen, primaryColorBrown } from '../styles'
-import { deleteOrder } from '../actions'
-import { connect } from 'react-redux'
-class OrderItem extends Component {
-    state = {}
+import { deleteOrder } from '../actions/index'
+class Orderitem extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+        }
+    }
     render() {
+        // console.log(this.props.orders)
         return (
-            <View style={styles.container}>
-                <TouchableOpacity 
-                    onPress={()=> this.props.deleteOrder(this.props.item)}>
-                    <Icon name="trash" size={25} color={primaryColorGreen} />
-                </TouchableOpacity>
-                <Text style={styles.amount}>{this.props.item.amount}</Text>
-                <Text style={styles.name}>{this.props.item.name}</Text>
-                <Text style={styles.price}>{this.props.item.price}</Text>
-                <Text style={styles.price}>{`${this.props.item.unitPrice * this.props.item.amount}$`}</Text>
-            </View>
+            this.props.item.amount === 0
+                ? null
+                : <View style={styles.container}>
+                    {this.props.historyMode === false &&
+                        <TouchableOpacity
+                            onPress={() => this.props.deleteOrder(
+                                {
+                                    item: this.props.item
+                                }
+                            )}
+                        >
+
+                            <Icon
+                                name='trash'
+                                size={25}
+                                color={primaryColorGreen}
+                                style={{ marginHorizontal: 7 }}
+                            />
+
+                        </TouchableOpacity>
+                    }
+                    <Text
+                        style={styles.amount}
+                    >{this.props.item.amount}</Text>
+                    <Text
+                        style={styles.foodName}
+                    >{this.props.item.name}</Text>
+                    <Text style={styles.price}>
+                        {`${this.props.item.unitPrice * this.props.item.amount}$`}</Text>
+                </View>
         );
     }
 }
@@ -28,25 +55,26 @@ class OrderItem extends Component {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        alignItems: 'center',
-        marginVertical: 4
+        alignItems: 'center'
     },
     amount: {
         fontWeight: 'bold',
         color: primaryColorBrown,
         marginHorizontal: 16,
+        fontSize: 18
     },
-    name: {
+    foodName: {
         flex: 1,
-        fontWeight: 'bold',
         color: primaryColorBrown,
-        marginHorizontal: 16,
+        marginHorizontal: 8,
+        fontSize: 18
     },
     price: {
-        fontWeight: 'bold',
-        color: primaryColorBrown,
+        color: primaryColorGreen,
         marginHorizontal: 16,
+        fontSize: 18,
+        fontWeight: 'bold'
     }
-
-})
-export default connect(null, { deleteOrder })(OrderItem)
+});
+const mapStateToProps = ({ orders }) => ({ orders })
+export default connect(mapStateToProps, { deleteOrder })(Orderitem)

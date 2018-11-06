@@ -1,11 +1,16 @@
-import {ADD_ORDER,DELETE_ORDER} from './type'
+import { ADD_ORDER, DELETE_ORDER, CLEAN_ORDER } from './type'
 
-export const addOrder = (order) =>({
+export const addOrder = (order) => ({
     type: ADD_ORDER,
-    payload: order 
+    // 1 object order co: name, amount, unitPrice
+    payload: order
 })
 
-export const deleteOrder = (order) =>({
+export const deleteOrder = (item) => ({
     type: DELETE_ORDER,
-    payload: order 
+    payload: item
+})
+
+export const cleanOrder = () => ({
+    type: CLEAN_ORDER
 })

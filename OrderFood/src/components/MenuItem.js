@@ -9,10 +9,12 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux'
 import { addOrder } from '../actions'
-import { primaryColorBrown, primaryColorRed, commonstyle, backgroundColor } from '../styles'
+
+import { primaryColorBrown, primaryColorRed, primaryColorGreen, backgroundColor, componentStyle } from '../styles'
 class MenuItem extends Component {
     state = {}
     render() {
+        //  console.log(this.props.item)
         return (
             <View style={styles.container}>
                 <Image
@@ -22,13 +24,13 @@ class MenuItem extends Component {
                 <Text style={styles.nameStyle}>{this.props.item.name}</Text>
                 <Text style={styles.priceStyle}>{this.props.item.price}$</Text>
                 <TouchableOpacity
-                    style={commonstyle.button}
+                    style={componentStyle.button}
                     onPress={() => this.props.addOrder({
-                        name:this.props.item.name,
-                        unitPrice:this.props.item.price
+                        name: this.props.item.name,
+                        unitPrice: this.props.item.price,
                     })}
                 >
-                    <Text style={{color:'white'}}>Add to card</Text>
+                    <Text style={{ color: 'white', fontWeight: 'bold' }}>Add to card</Text>
                 </TouchableOpacity>
             </View>
         );

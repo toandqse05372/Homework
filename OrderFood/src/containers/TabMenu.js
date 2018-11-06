@@ -4,11 +4,12 @@ import {
     View,
     StyleSheet,
     FlatList,
-    TouchableOpacity
+    TouchableOpacity,
+    TextInput
 } from 'react-native';
 import firebase from 'react-native-firebase'
 import MenuItem from '../components/MenuItem'
-import { commonstyle, primaryColorRed, primaryColorGreen, backgroundColor } from '../styles'
+import { primaryColorBrown, primaryColorRed, primaryColorGreen, backgroundColor, componentStyle } from '../styles'
 class TabMenu extends Component {
     state = {
         currentCategory: 'Hamburger',
@@ -17,8 +18,8 @@ class TabMenu extends Component {
     loadData() {
         // console.log("loading")
         firebase.database().ref(`dishes/${this.state.currentCategory}`)
-            .on('value', res => this.setState({ dishes: res._value }, () => console.log(this.state.dishes)))
-        //.on('value', res => console.log(res))
+            .on('value', res => this.setState({ dishes: res._value }))
+        // .on('value', res => console.log(res))
         // .on la co che lang nghe lien tuc, database thay doi thi load lai data
     }
     componentDidMount() {
@@ -62,7 +63,7 @@ class TabMenu extends Component {
         <FlatList
             data={this.state.dishes}
             renderItem={this.renderItemMenu}
-            keyExtractor={(item) => item}
+            keyExtractor={(item) => item.name}
             numColumns={2}
         />
     )
@@ -70,7 +71,7 @@ class TabMenu extends Component {
 
     render() {
         return (
-            <View style={commonstyle.screenContainer}>
+            <View style={componentStyle.screenContainer}>
                 {this.renderCategories()}
                 {this.renderMenu()}
             </View>
@@ -79,11 +80,6 @@ class TabMenu extends Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: backgroundColor,
-        // marginTop: 10
-    },
     itemCategories: {
         fontWeight: 'bold',
         color: primaryColorGreen,
@@ -91,5 +87,6 @@ const styles = StyleSheet.create({
         marginRight: 15,
     }
 });
+
 
 export default TabMenu;
